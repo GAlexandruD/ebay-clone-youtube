@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .connectWalletButton {
+    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  }
+
+  .headerLink {
+    @apply hidden md:inline-flex cursor-pointer hover:link;
+  }
+
+  .link {
+    @apply hover:text-blue-500 hover:underline cursor-pointer text-gray-600;
+  }
+}
