@@ -52,13 +52,13 @@ const Header = (props: Props) => {
 
       <hr className="mt-2" />
 
-      <section>
+      <section className="flex items-center space-x-2 py-5">
         <div className="h-16 w-16 sm:w-28 md:w-44 sm:h-28 md:h-44">
           <Link href="/">
             <Image
               className="h-full w-full object-contain"
               alt="ThirdWeb Logo"
-              src="https://links.papareact.com/bdb"
+              src="/static/NFT_Logo.png"
               width={100}
               height={100}
               priority
@@ -79,6 +79,32 @@ const Header = (props: Props) => {
             type="text"
           />
         </div>
+
+        <button className="hidden sm:inline bg-blue-600 text-white px-5 md:px-10 py-2 border-2 border-blue-600">
+          Search
+        </button>
+        <Link href="/create">
+          <button className="border-2 border-blue-600 px-5 md:px-10 py-2 text-blue-600 hover:bg-blue-600/50 hover:text-white cursor-pointer">
+            List Item
+          </button>
+        </Link>
+      </section>
+
+      <hr />
+
+      <section className="flex py-3 space-x-6 text-xs md:text-sm whitespace-nowrap justify-center px-6">
+        <p className="link">Home</p>
+        <p className="link">Electronics</p>
+        <p className="link">Computers</p>
+        <p className="link hidden sm:inline">Video Games</p>
+        <p className="link hidden sm:inline">Home & Garden</p>
+        <p className="link hidden md:inline">Health & Beauty</p>
+        <p className="link hidden lg:inline">Collectibles and Art</p>
+        <p className="link hidden lg:inline">Books</p>
+        <p className="link hidden lg:inline">Music</p>
+        <p className="link hidden xl:inline">Deals</p>
+        <p className="link hidden xl:inline">Other</p>
+        <p className="link">More</p>
       </section>
     </div>
   );
