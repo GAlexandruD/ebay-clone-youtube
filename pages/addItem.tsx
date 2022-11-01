@@ -38,7 +38,6 @@ const addItem = (props: Props) => {
     };
 
     try {
-      console.log("Minting NFT...");
       const tx = await contract.mintTo(address, metadata);
 
       const receipt = tx.receipt; // The transaction receipt
@@ -46,9 +45,9 @@ const addItem = (props: Props) => {
       const nft = await tx.data(); //(optional) Fetch details of minted NFT
 
       console.log(receipt, tokenId, nft);
+      router.push("/");
     } catch (error) {
       console.error(error);
-      router.push("/");
     }
   };
 

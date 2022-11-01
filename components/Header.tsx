@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAddress, useDisconnect, useMetamask } from "@thirdweb-dev/react";
 import Link from "next/link";
 import {
@@ -9,6 +9,7 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
 
 type Props = {};
 
@@ -17,19 +18,41 @@ const Header = (props: Props) => {
   const address = useAddress();
   const disconnect = useDisconnect();
 
+  // useEffect(() => {
+  //   if (address) {
+  //     toast.success("You have logged in!");
+  //   } else {
+  //     toast.error("You are disconnected!");
+  //   }
+  // }, [address]);
+
+  const handleLogin = () => {
+    toast.promise(connectWithMetamask(), {
+      loading: "Logging in...",
+      success: <b>You are logged in!</b>,
+      error: <b>You are logged out.</b>,
+    });
+  };
+
+  const handleDisconnect = () => {
+    toast.promise(disconnect(), {
+      loading: "Logging out...",
+      success: <b>You are logged out!</b>,
+      error: <b>Could not sign you out.</b>,
+    });
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-2">
+      <Toaster />
       <nav className="flex justify-between">
         <div className="flex items-center space-x-2 text-sm">
           {address ? (
-            <button onClick={disconnect} className="connectWalletButton">
+            <button onClick={handleDisconnect} className="connectWalletButton">
               Hi, {address.slice(0, 4) + "..." + address.slice(-4)}
             </button>
           ) : (
-            <button
-              onClick={connectWithMetamask}
-              className="connectWalletButton"
-            >
+            <button onClick={handleLogin} className="connectWalletButton">
               Connect your wallet
             </button>
           )}
@@ -53,12 +76,12 @@ const Header = (props: Props) => {
       <hr className="mt-2" />
 
       <section className="flex items-center space-x-2 py-5">
-        <div className="h-16 w-16 sm:w-28 md:w-44 sm:h-28 md:h-44">
+        <div className="h-16 w-16 sm:w-28 md:w-44 sm:h-28 md:h-44 flex ">
           <Link href="/">
             <Image
-              className="h-full w-full object-contain"
+              className="h-full w-full object-contain sm:ml-4"
               alt="ThirdWeb Logo"
-              src="/static/NFT_Logo.png"
+              src="/static/Coloured_Leaf.png"
               width={100}
               height={100}
               priority
@@ -84,7 +107,7 @@ const Header = (props: Props) => {
           Search
         </button>
         <Link href="/create">
-          <button className="border-2 border-blue-600 px-5 md:px-10 py-2 text-blue-600 hover:bg-blue-600/50 hover:text-white cursor-pointer">
+          <button className="border-2 border-blue-600 px-5 lg:px-10 py-2 text-blue-600 hover:bg-blue-600/50 hover:text-white cursor-pointer">
             List Item
           </button>
         </Link>

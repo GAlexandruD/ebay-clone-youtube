@@ -5,6 +5,7 @@ import {
   MediaRenderer,
 } from "@thirdweb-dev/react";
 import { ListingType } from "@thirdweb-dev/sdk";
+import Link from "next/link";
 
 import Header from "../components/Header";
 
@@ -31,9 +32,10 @@ const Home = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-auto">
             {listings?.map((listing) => (
-              <div
-                key={listing.id}
+              <Link
                 className="flex flex-col card hover:scale-105 transition-all duration-150 ease-out"
+                key={listing.id}
+                href={`/listing/${listing.id}`}
               >
                 <div className="flex flex-1 flex-col pb-2 items-center">
                   <MediaRenderer src={listing.asset.image} />
@@ -71,7 +73,7 @@ const Home = () => {
                     )}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
