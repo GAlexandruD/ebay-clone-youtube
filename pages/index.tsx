@@ -6,6 +6,7 @@ import {
 } from "@thirdweb-dev/react";
 import { ListingType } from "@thirdweb-dev/sdk";
 import Link from "next/link";
+import Countdown from "react-countdown";
 
 import Header from "../components/Header";
 
@@ -56,21 +57,34 @@ const Home = () => {
                     {listing.buyoutCurrencyValuePerToken.symbol}
                   </p>
 
-                  <div
-                    className={`flex items-center space-x-1 justify-end text-xs border w-fit ml-auto p-2 rounded-lg text-white ${
-                      listing.type === ListingType.Direct
-                        ? "bg-blue-500"
-                        : "bg-red-500"
-                    }`}
-                  >
-                    <p>
-                      {listing.type === ListingType.Direct ? "Buy Now" : "Bid"}
-                    </p>
-                    {listing.type === ListingType.Direct ? (
-                      <BanknotesIcon className="h-4" />
-                    ) : (
-                      <ClockIcon className="h-4" />
+                  <div className="flex items-center">
+                    {listing.type === ListingType.Auction && (
+                      <Countdown
+                        className="text-gray-400"
+                        date={
+                          Number(listing.endTimeInEpochSeconds.toString()) *
+                          1000
+                        }
+                      />
                     )}
+                    <div
+                      className={`flex items-center space-x-1 justify-end text-xs border w-fit ml-auto p-2 rounded-lg text-white ${
+                        listing.type === ListingType.Direct
+                          ? "bg-blue-500"
+                          : "bg-red-500"
+                      }`}
+                    >
+                      <p>
+                        {listing.type === ListingType.Direct
+                          ? "Buy Now"
+                          : "Bid"}
+                      </p>
+                      {listing.type === ListingType.Direct ? (
+                        <BanknotesIcon className="h-4" />
+                      ) : (
+                        <ClockIcon className="h-4" />
+                      )}
+                    </div>
                   </div>
                 </div>
               </Link>

@@ -107,7 +107,7 @@ const Header = (props: Props) => {
           Search
         </button>
         <Link href="/create">
-          <button className="border-2 border-blue-600 px-5 lg:px-10 py-2 text-blue-600 hover:bg-blue-600/50 hover:text-white cursor-pointer">
+          <button className="border-2 border-blue-600 px-5 lg:px-10 py-2 text-blue-600 hover:bg-blue-600/50 hover:text-white cursor-pointer truncate">
             List Item
           </button>
         </Link>
